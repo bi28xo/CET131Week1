@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class HitManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    float hitPoints = 25;
+
+    void Hit(float rawDamage)
     {
-        
+        hitPoints -= rawDamage;
+        if(hitPoints<=0)
+        {
+            Invoke("SelfTerminate", 0f);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void SelfTerminate()
     {
-        
+        Destroy(gameObject);
     }
 }

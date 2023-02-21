@@ -50,6 +50,10 @@ public class Item : MonoBehaviour
                 {
                     
                 }
+                if (gameObject.tag=="HealthSource")
+                {
+
+                }
                 else
                 {
                     Interact();

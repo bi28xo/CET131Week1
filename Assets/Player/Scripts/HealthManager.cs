@@ -18,5 +18,10 @@ public class HealthManager : MonoBehaviour
             Debug.Log("TODO: Game Over-You Died");
         }
     }
+    public void SetHP(float HP)
+    {
+        hitPoints -= HP;
+        Debug.Log("Hit From Trap"+HP.ToString());
+    }
     
 }

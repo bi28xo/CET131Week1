@@ -16,8 +16,7 @@ public class MedPack : MonoBehaviour
     [TextArea(4, 16)]
     string description;
 
-    [SerializeField]
-    float weight = 0;
+    
     [SerializeField]
     int quantity = 1;
 

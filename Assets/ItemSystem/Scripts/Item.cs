@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -40,19 +37,26 @@ public class Item : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider collider)
+    {
+        if (gameObject.tag == "Trap")
+        {
+            if (collider.tag == "Player")
+            {
+                collider.GetComponent<HealthManager>().ChangeHP(-10f * Time.deltaTime);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (isPickupOnCollision)
         {
             if (collider.tag == "Player")
             {
-                if (gameObject.tag=="Trap")
-                {
-                    
-                }
                 if (gameObject.tag=="HealthSource")
                 {
-
+                    collider.GetComponent<HealthManager>().ChangeHP(10f);
                 }
                 else
                 {

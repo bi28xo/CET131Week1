@@ -22,7 +22,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         Cursor.visible = false;
         characterController = GetComponent<CharacterController>();
-        //SetCurrentCamera();
+        SetCurrentCamera();
     }
 
     // Update is called once per frame
@@ -40,12 +40,12 @@ public class PlayerLocomotion : MonoBehaviour
         if (switchPerspective.GetPerspective()== SwitchPerspective.Perspective.First)
         {
             playerContainer = gameObject.transform.Find("Container1P");
-            cameraContainer = playerContainer.transform.Find("Camera1PCOntainer");
+            cameraContainer = playerContainer.transform.Find("Camera1PContainer");
         }
         else
         {
             playerContainer = gameObject.transform.Find("Container3P");
-            cameraContainer = playerContainer.transform.Find("Camera3PCOntainer");
+            cameraContainer = playerContainer.transform.Find("Camera3PContainer");
         }
     }
     void Locomotion()

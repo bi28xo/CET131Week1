@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     void FireWeapon()
     {
-        if (Input.GetButtonDown("Fire 1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             cameraTransform = Camera.main.transform;
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);

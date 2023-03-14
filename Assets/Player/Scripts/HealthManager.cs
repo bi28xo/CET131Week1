@@ -1,27 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField]
-    float hitPoints = 100f;
+    [SerializeField] float maxHitPoints = 100f;
+    float hitPoints;
 
-    void Hit(float RawDamage)
+    public Slider healthSlider;
+
+    void Start()
     {
-        hitPoints -= RawDamage;
+        hitPoints = maxHitPoints;
+    }
 
-        Debug.Log("OUCH:" + hitPoints.ToString());
+    void Hit(float rawDamage)
+    {
+        hitPoints -= rawDamage;
+        SetHealthSlider();
 
-        if (hitPoints<=0)
+        Debug.Log("OUCH: " + hitPoints.ToString());
+
+        if (hitPoints <= 0)
         {
-            Debug.Log("TODO: Game Over-You Died");
+            Debug.Log("TODO: GAME OVER - YOU DIED");
         }
     }
+
     public void ChangeHP(float HP)
     {
         hitPoints += HP;
-        Debug.Log("Hit From Trap: " + HP.ToString() + " ("+ hitPoints.ToString() + ")");
+        Debug.Log("Hit From Trap: " + HP.ToString() + " (" + hitPoints.ToString() + ")");
     }
-    
+
+    void SetHealthSlider()
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.value = NormalisedHitPoints();
+        }
+    }
+
+    float NormalisedHitPoints()
+    {
+        return hitPoints / maxHitPoints;
+    }
 }

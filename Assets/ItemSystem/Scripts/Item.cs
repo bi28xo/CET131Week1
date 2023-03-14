@@ -14,6 +14,8 @@ public class Item : MonoBehaviour
     [TextArea(4, 16)]
     string description;
 
+    [SerializeField] int pointValue = 1;
+
     [SerializeField]
     float weight = 0;
     [SerializeField]
@@ -100,6 +102,7 @@ public class Item : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+            GameManager.IncrementScore(pointValue);
         }
     }
 }

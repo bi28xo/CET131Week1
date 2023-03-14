@@ -13,7 +13,10 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FireWeapon(); 
+        if (!MenuController.IsGamePaused)
+        {
+            FireWeapon();
+        }
     }
 
     void FireWeapon()

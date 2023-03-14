@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     // DESIGN PATTERN: SINGLETON
     public static GameManager Instance { get; private set; }
     public UIManager UIManager { get; private set; }
+    public HighScoreSystem HighScoreSystem { get; private set; }
+
 
     private static float secondsSinceStart = 0;
     private static int score;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         UIManager = GetComponent<UIManager>();
+        HighScoreSystem = GetComponent<HighScoreSystem>();
     }
 
     void Update()
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         ResetScore();
         secondsSinceStart = 0f;
+        Time.timeScale = 1f;
     }
 
     private static void ResetScore()
@@ -53,4 +57,13 @@ public class GameManager : MonoBehaviour
         Instance.UIManager.UpdateScoreUI(score);
         Debug.Log("Score: " + score);
     }
+    public void GameOver()
+    {
+        Time.timeScale = 0f;
+        MenuController.IsGamePaused = true;
+
+        Instance.UIManager.ActivateEndGame(score);
+        HighScoreSystem.CheckHighScore("Anon", score);
+    }
+
 }
